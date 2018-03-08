@@ -16,36 +16,37 @@ var performance = {
     </div>
     `,
     controller: function PerformanceController($scope, $timeout) {
-      var ctrl = this;
-      ctrl.count = 0;
-      ctrl.increment = function() {
-        this.count++;
-        console.log('ON INCREMENT', this.count);
-      }
+        var ctrl = this;
+        ctrl.count = 0;
+        ctrl.increment = function() {
+            this.count++;
+            console.log('ON INCREMENT', this.count);
+        };
 
-      $scope.$watch(
-        function () {
-          return ctrl.count
-        },
-        function (newValue, oldValue) {
-          console.log('ctrl.count', newValue)
-        }
-      );
+        $scope.$watch(
+            function () {
+                return ctrl.count
+            },
+            function (newValue, oldValue) {
+                console.log('ctrl.count', newValue)
+            }
+        );
 
-      document.getElementById('secondBtn').addEventListener('click', function() {
-        ctrl.increment();
-      });
-
-      document.getElementById('thirdBtn').addEventListener('click', function() {
-        $scope.$apply(function() {
-          ctrl.increment();
+        document.getElementById('secondBtn').addEventListener('click', function() {
+            console.log('second btn clicked');
+            ctrl.increment(); // changes var but not dom because digest cycle has not completed
         });
-      });
+
+        document.getElementById('thirdBtn').addEventListener('click', function() {
+            console.log('third btn clicked');  
+            $scope.$apply(function() { // completes digest cycle
+                ctrl.increment();
+            });
+        });
 
     }
-  }
-  ;
+};
 
 angular
-  .module('app')
-  .component('performance', performance);
+    .module('app')
+    .component('performance', performance);
