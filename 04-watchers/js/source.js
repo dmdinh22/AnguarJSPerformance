@@ -1,20 +1,20 @@
 function Scope() {
-  this.$id = nextUid();
-  this.$$phase = this.$parent = this.$$watchers =
+    this.$id = nextUid();
+    this.$$phase = this.$parent = this.$$watchers =
     this.$$nextSibling = this.$$prevSibling =
       this.$$childHead = this.$$childTail = null;
-  this.$root = this;
-  this.$$destroyed = false;
-  this.$$listeners = {};
-  this.$$listenerCount = {};
-  this.$$watchersCount = 0;
-  this.$$isolateBindings = null;
+    this.$root = this;
+    this.$$destroyed = false;
+    this.$$listeners = {};
+    this.$$listenerCount = {};
+    this.$$watchersCount = 0;
+    this.$$isolateBindings = null;
 }
 
 function incrementWatchersCount(current, count) {
-  do {
-    current.$$watchersCount += count;
-  } while ((current = current.$parent));
+    do {
+        current.$$watchersCount += count;
+    } while ((current = current.$parent));
 }
 
 // Insanity Warning: scope depth-first traversal
@@ -22,7 +22,7 @@ function incrementWatchersCount(current, count) {
 // this piece should be kept in sync with the traversal in $broadcast
 if (!(next = ((current.$$watchersCount && current.$$childHead) ||
   (current !== target && current.$$nextSibling)))) {
-  while (current !== target && !(next = current.$$nextSibling)) {
-    current = current.$parent;
-  }
+    while (current !== target && !(next = current.$$nextSibling)) {
+        current = current.$parent;
+    }
 }
