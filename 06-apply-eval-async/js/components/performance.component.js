@@ -5,7 +5,7 @@ var performance = {
     `,
     controller: function PerformanceController($scope) {
         var ctrl = this;
-        ctrl.name = 'Motto!';
+        ctrl.name = 'Dinh!';
         // $scope.$apply(function() { console.log('APPLY FIRED!')});
         $scope.$applyAsync(function() { console.log('APPLY ASYNC FIRED!');});
         $scope.$evalAsync(function() { console.log('EVAL ASYNC FIRED!');});
@@ -15,16 +15,16 @@ var performance = {
                 return ctrl.name;
             },
             function(newValue, oldValue, scope) {
-
-                $scope.$evalAsync(function(scope) {
+                // evaAsync schedule fn to be run in same digest
+                $scope.$evalAsync(function(scope) { 
                     console.log('$evalAsync executed');
-                    ctrl.name = 'Todd!';
+                    ctrl.name = 'David!';
                 });
 
-
+                // applyAsync defers function to be called in next digest cycle
                 $scope.$applyAsync(function(scope) {
                     console.log('$applyAsync executed');
-                    ctrl.name = 'Todd!';
+                    ctrl.name = 'David!';
                 });
             }
         );

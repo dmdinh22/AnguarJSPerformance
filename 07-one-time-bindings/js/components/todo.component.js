@@ -1,10 +1,10 @@
 var todo = {
-	bindings: {
+    bindings: {
   	item: '<',
-    onChange: '&',
-    onRemove: '&'
-  },
-  template: `
+        onChange: '&',
+        onRemove: '&'
+    },
+    template: `
   	<div>
       <span ng-class="::{ complete: $ctrl.item.complete }">
 				{{ ::$ctrl.item.label }}
@@ -21,5 +21,5 @@ var todo = {
 };
 
 angular
-	.module('app')
-  .component('todo', todo);
+    .module('app')
+    .component('todo', todo);
