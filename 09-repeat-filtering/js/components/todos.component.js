@@ -1,5 +1,5 @@
 var todos = {
-  template: `
+    template: `
   	<div>
     	<todo-search
         on-search="$ctrl.onSearch($event);">
@@ -15,31 +15,31 @@ var todos = {
       </todo-list>
     </div>
   `,
-  controller: function ($filter, $interval, TodoService) {
-  	this.$onInit = function () {
-      this.todosFilter = '';
-      this.todosPayload = TodoService.getTodos();
-    	this.todos = this.todosPayload;
-      $interval(function() {}, 1000);
-    };
-    this.addTodo = function ({ label }) {
-      this.todos = [{ label, id: this.todos.length + 1 }, ...this.todos];
-    };
-    this.onSearch = function (search) {
-      this.todos = $filter('filter')(this.todosPayload, search.term);
-      // this.todosFilter = search;
-    };
-    this.completeTodo = function ({ todo }) {
-      this.todos = this.todos.map(
-        item => item.id === todo.id ? Object.assign({}, item, { complete: true }) : item
-      );
-    };
-    this.removeTodo = function ({ todo }) {
-      this.todos = this.todos.filter(({ id }) => id !== todo.id);
-    };
-  }
+    controller: function ($filter, $interval, TodoService) {
+        this.$onInit = function () {
+            this.todosFilter = '';
+            this.todosPayload = TodoService.getTodos();
+            this.todos = this.todosPayload;
+            $interval(function() {}, 1000);
+        };
+        this.addTodo = function ({ label }) {
+            this.todos = [{ label, id: this.todos.length + 1 }, ...this.todos];
+        };
+        this.onSearch = function (search) {
+            this.todos = $filter('filter')(this.todosPayload, search.term);
+            //this.todosFilter = search;
+        };
+        this.completeTodo = function ({ todo }) {
+            this.todos = this.todos.map(
+                item => item.id === todo.id ? Object.assign({}, item, { complete: true }) : item
+            );
+        };
+        this.removeTodo = function ({ todo }) {
+            this.todos = this.todos.filter(({ id }) => id !== todo.id);
+        };
+    }
 };
 
 angular
-	.module('app')
-  .component('todos', todos);
+    .module('app')
+    .component('todos', todos);
