@@ -1,6 +1,6 @@
 var performance = {
-  bindings: {},
-  template: `
+    bindings: {},
+    template: `
   <h1>ng-if vs ng-show</h1>
   <div class="container">
     <hr>
@@ -11,20 +11,20 @@ var performance = {
     <content class="component" ng-if="$ctrl.showBottom"></content>
   </div>
   `,
-  controller: function PerformanceController() {
-    this.showTop = true;
-    this.showBottom = true;
+    controller: function PerformanceController() {
+        this.showTop = true;
+        this.showBottom = true;
 
-    this.toggleTop = function() {
-      this.showTop = !this.showTop;
-    }
+        this.toggleTop = function() {
+            this.showTop = !this.showTop;
+        }
 
-    this.toggleBottom = function() {
-      this.showBottom = !this.showBottom;
+        this.toggleBottom = function() {
+            this.showBottom = !this.showBottom;
+        }
     }
-  }
 };
 
 angular
-  .module('app')
-  .component('performance', performance);
+    .module('app')
+    .component('performance', performance);
