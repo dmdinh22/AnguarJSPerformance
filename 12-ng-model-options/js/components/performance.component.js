@@ -1,6 +1,6 @@
 var performance = {
-  bindings: {},
-  template: `
+    bindings: {},
+    template: `
     <h1 track-digests></h1>
     <div><strong>Standard ngModel</strong></div>
     <input type="text" ng-model="$ctrl.firstName">
@@ -14,14 +14,14 @@ var performance = {
       }
     }">
     `,
-  controller: function PerformanceController($rootScope) {
-    this.$onInit = function() {
-      this.firstName = 'Todd';
-      this.lastName = 'Motto';
+    controller: function PerformanceController($rootScope) {
+        this.$onInit = function() {
+            this.firstName = 'Todd';
+            this.lastName = 'Motto';
+        }
     }
-  }
 };
 
 angular
-  .module('app')
-  .component('performance', performance);
+    .module('app')
+    .component('performance', performance);
