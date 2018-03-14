@@ -1,6 +1,6 @@
 let performance = {
-  bindings: {},
-  template: `
+    bindings: {},
+    template: `
   <h1>Limiting Expressions in Templates</h1>
   <div class="element" ng-if="$ctrl.isAdmin && $ctrl.favoriteColor === 'blue' && $ctrl.totalCount > 10">
     Too many expressions in the template! How do you test this?
@@ -19,22 +19,22 @@ let performance = {
   </div>
 
   `,
-  controller: function PerformanceController($scope) {
-    this.$onInit = function() {
-      this.isAdmin = true;
-      this.favoriteColor = 'blue';
-      this.totalCount = 11;
-      this.elementShown = false;
+    controller: function PerformanceController($scope) {
+        this.$onInit = function() {
+            this.isAdmin = true;
+            this.favoriteColor = 'blue';
+            this.totalCount = 11;
+            this.elementShown = false;
 
-      this.elementShown = this.showElement();
+            this.elementShown = this.showElement();
+        };
+        this.showElement = function() {
+            return this.isAdmin && this.favoriteColor === 'blue' && this.totalCount > 10
+        };
     }
-    this.showElement = function() {
-      return this.isAdmin && this.favoriteColor === 'blue' && this.totalCount > 10
-    }
-  }
 };
 
 angular
-  .module('app')
-  .component('performance', performance)
+    .module('app')
+    .component('performance', performance)
 ;
