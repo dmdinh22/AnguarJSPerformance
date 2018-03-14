@@ -1,5 +1,5 @@
 angular
-	.module('app', [])
-	.config(function ($httpProvider) {
-		$httpProvider.useApplyAsync(true);
-	});
+    .module('app', [])
+    .config(function ($httpProvider) {
+        $httpProvider.useApplyAsync(true);
+    });

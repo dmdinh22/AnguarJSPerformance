@@ -1,5 +1,5 @@
 var useApplyAsync = false;
- /**
+/**
   * @ngdoc method
   * @name $httpProvider#useApplyAsync
   * @description
@@ -19,33 +19,33 @@ var useApplyAsync = false;
   *    otherwise, returns the current configured value.
   **/
 this.useApplyAsync = function(value) {
- if (isDefined(value)) {
-   useApplyAsync = !!value;
-   return this;
- }
- return useApplyAsync;
+    if (isDefined(value)) {
+        useApplyAsync = !!value;
+        return this;
+    }
+    return useApplyAsync;
 };
 
 function createApplyHandlers(eventHandlers) {
-  if (eventHandlers) {
-    var applyHandlers = {};
-    forEach(eventHandlers, function(eventHandler, key) {
-      applyHandlers[key] = function(event) {
-        if (useApplyAsync) {
-          $rootScope.$applyAsync(callEventHandler);
-        } else if ($rootScope.$$phase) {
-          callEventHandler();
-        } else {
-          $rootScope.$apply(callEventHandler);
-        }
+    if (eventHandlers) {
+        var applyHandlers = {};
+        forEach(eventHandlers, function(eventHandler, key) {
+            applyHandlers[key] = function(event) {
+                if (useApplyAsync) {
+                    $rootScope.$applyAsync(callEventHandler);
+                } else if ($rootScope.$$phase) {
+                    callEventHandler();
+                } else {
+                    $rootScope.$apply(callEventHandler);
+                }
 
-        function callEventHandler() {
-          eventHandler(event);
-        }
-      };
-    });
-    return applyHandlers;
-  }
+                function callEventHandler() {
+                    eventHandler(event);
+                }
+            };
+        });
+        return applyHandlers;
+    }
 }
 
 
@@ -56,23 +56,23 @@ function createApplyHandlers(eventHandlers) {
  *  - calls $apply
  */
 function done(status, response, headersString, statusText) {
-  if (cache) {
-    if (isSuccess(status)) {
-      cache.put(url, [status, response, parseHeaders(headersString), statusText]);
-    } else {
-      // remove promise from the cache
-      cache.remove(url);
+    if (cache) {
+        if (isSuccess(status)) {
+            cache.put(url, [status, response, parseHeaders(headersString), statusText]);
+        } else {
+            // remove promise from the cache
+            cache.remove(url);
+        }
     }
-  }
 
-  function resolveHttpPromise() {
-    resolvePromise(response, status, headersString, statusText);
-  }
+    function resolveHttpPromise() {
+        resolvePromise(response, status, headersString, statusText);
+    }
 
-  if (useApplyAsync) {
-    $rootScope.$applyAsync(resolveHttpPromise);
-  } else {
-    resolveHttpPromise();
-    if (!$rootScope.$$phase) $rootScope.$apply();
-  }
+    if (useApplyAsync) {
+        $rootScope.$applyAsync(resolveHttpPromise);
+    } else {
+        resolveHttpPromise();
+        if (!$rootScope.$$phase) $rootScope.$apply();
+    }
 }

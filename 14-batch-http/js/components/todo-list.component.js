@@ -1,16 +1,16 @@
 var todoList = {
-  bindings: {
-    todos: '<',
-    onComplete: '&',
-    onDelete: '&'
-  },
-	template: `
+    bindings: {
+        todos: '<',
+        onComplete: '&',
+        onDelete: '&'
+    },
+    template: `
     <ul>
 	    <li ng-repeat="todo in ::$ctrl.todos">
   	    <todo
     	    item="todo"
-      	  on-change="$ctrl.onComplete($locals);"
-        	on-remove="$ctrl.onDelete($locals);">
+      	  on-change="$ctrl.onComplete($locals)"
+        	on-remove="$ctrl.onDelete($locals)">
 	      </todo>
   	  </li>
     </ul>
@@ -18,5 +18,5 @@ var todoList = {
 };
 
 angular
-  .module('app')
-  .component('todoList', todoList);
+    .module('app')
+    .component('todoList', todoList);
