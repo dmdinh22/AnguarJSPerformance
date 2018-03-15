@@ -1,10 +1,10 @@
 var todoList = {
-  bindings: {
-    todos: '<',
-    onComplete: '&',
-    onDelete: '&'
-  },
-	template: `
+    bindings: {
+        todos: '<',
+        onComplete: '&',
+        onDelete: '&'
+    },
+    template: `
     <ul>
 	    <li ng-repeat="todo in ::$ctrl.todos">
   	    <todo
@@ -18,5 +18,5 @@ var todoList = {
 };
 
 angular
-  .module('app')
-  .component('todoList', todoList);
+    .module('app')
+    .component('todoList', todoList);
