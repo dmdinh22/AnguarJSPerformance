@@ -1,6 +1,6 @@
 var performance = {
-  bindings: {},
-  template: `
+    bindings: {},
+    template: `
   <h1>Using $onDestroy</h1>
   <div class="container">
     <hr>
@@ -9,15 +9,15 @@ var performance = {
     <content class="component" ng-if="$ctrl.showContent"></content>  
   </div>
   `,
-  controller: function PerformanceController() {
-    this.showContent = true;
+    controller: function PerformanceController() {
+        this.showContent = true;
 
-    this.toggleContent = function() {
-      this.showContent = !this.showContent;
+        this.toggleContent = function() {
+            this.showContent = !this.showContent;
+        }
     }
-  }
 };
 
 angular
-  .module('app')
-  .component('performance', performance);
+    .module('app')
+    .component('performance', performance);
